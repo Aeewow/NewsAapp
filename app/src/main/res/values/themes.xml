@@ -9,6 +9,8 @@
 
     <style name="Theme.NewsAapp" parent="Base.Theme.NewsAapp" />
 
-
+    <style name="App.Custom.Indicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">@color/yellow</item>
+    </style>
 
 </resources>
