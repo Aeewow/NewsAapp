@@ -45,8 +45,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
         itemSearchError = view.findViewById(R.id.itemSearchError)
 
-        val inflater =
-            requireContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+        val inflater = requireContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view: View = inflater.inflate(R.layout.item_error, null)
 
         retryButton = view.findViewById(R.id.retryButton)
@@ -57,7 +56,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
 
         newsAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
-                putSerializable("articles", it)
+                putSerializable("article", it)
             }
             findNavController().navigate(R.id.action_searchFragment2_to_articleFragment, bundle)
         }
@@ -105,8 +104,7 @@ class SearchFragment : Fragment(R.layout.fragment_search) {
         retryButton.setOnClickListener {
             if (binding.searchEdit.text.toString().isNotEmpty()){
                 newsViewModel.searchNews(binding.searchEdit.text.toString())
-            }else
-            {
+            }else {
                 hideErrorMessage()
             }
         }

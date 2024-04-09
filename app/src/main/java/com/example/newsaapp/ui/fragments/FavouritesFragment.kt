@@ -32,15 +32,14 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
 
         newsAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
-                putSerializable("articles", it)
+                putSerializable("article", it)
             }
             findNavController().navigate(R.id.action_favouritesFragment2_to_articleFragment, bundle)
         }
 
         val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
             ItemTouchHelper.UP or ItemTouchHelper.DOWN,
-            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
-        ) {
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
 
             override fun onMove(
                 recyclerView: RecyclerView,
@@ -54,7 +53,7 @@ class FavouritesFragment : Fragment(R.layout.fragment_favourites) {
                 val position = viewHolder.adapterPosition
                 val article = newsAdapter.differ.currentList[position]
                 newsViewModel.deleteArticle(article)
-                Snackbar.make(view!!, "Удалено из избранных", Snackbar.LENGTH_LONG).apply {
+                Snackbar.make(view, "Удалено из избранных", Snackbar.LENGTH_LONG).apply {
                     setAction("Undo") {
                         newsViewModel.addToFavourites(article)
                     }

@@ -48,7 +48,7 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
 
         newsAdapter.setOnItemClickListener {
             val bundle = Bundle().apply {
-                putSerializable("articles", it)
+                putSerializable("article", it)
             }
             findNavController().navigate(R.id.action_headlinesFragment2_to_articleFragment, bundle)
         }
@@ -81,7 +81,7 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
          })
 
         retryButton.setOnClickListener{
-            newsViewModel.getHeadlines("ru")
+            newsViewModel.getHeadlines("us")
         }
     }
 
@@ -122,9 +122,9 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
             val isNoErrors = !isError
             val isNotLoadingAndNotLastPage = !isLoading && !isLastPage
             val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
-            val isNotAtBegining = firstVisibleItemPosition >= 0
+            val isNotAtBeginning = firstVisibleItemPosition >= 0
             val isTotalMoreThanVisible = totalItemCount >= Constants.QUERY_PAGE_SIZE
-            val shouldPaginate = isNoErrors && isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBegining && isTotalMoreThanVisible && isScrolling
+            val shouldPaginate = isNoErrors && isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning && isTotalMoreThanVisible && isScrolling
             if (shouldPaginate){
                 newsViewModel.getHeadlines("ru")
                 isScrolling = false
@@ -148,5 +148,4 @@ class HeadlinesFragment : Fragment(R.layout.fragment_headlines) {
                 addOnScrollListener(this@HeadlinesFragment.scrollListener)
         }
     }
-
 }
